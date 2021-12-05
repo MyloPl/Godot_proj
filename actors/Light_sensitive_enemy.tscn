@@ -1,0 +1,175 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://assets/light_sensitive_txt/attack.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Light_sensitive_enemy.gd" type="Script" id=2]
+[ext_resource path="res://assets/light_sensitive_txt/hit.png" type="Texture" id=3]
+[ext_resource path="res://assets/light_sensitive_txt/idle.png" type="Texture" id=5]
+[ext_resource path="res://assets/light_sensitive_txt/run.png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 39, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 78, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 117, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 156, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 39, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 78, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 117, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 156, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 195, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 234, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 273, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 39, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 39, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 78, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 117, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 156, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 195, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 234, 126, 39 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 273, 126, 39 )
+
+[sub_resource type="SpriteFrames" id=34]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=35]
+radius = 3.9357
+height = 6.0832
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 254.002
+
+[sub_resource type="CapsuleShape2D" id=36]
+height = 13.4314
+
+[node name="Light_sensitive" type="KinematicBody2D" groups=["enemies"]]
+position = Vector2( -3, -2 )
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 1 )
+frames = SubResource( 34 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3, 10 )
+rotation = 1.59193
+shape = SubResource( 35 )
+
+[node name="Player_cast" type="RayCast2D" parent="."]
+position = Vector2( 3, 2 )
+enabled = true
+cast_to = Vector2( 0, 250 )
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Player_finding" type="Area2D" parent="."]
+position = Vector2( 3, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_finding"]
+shape = SubResource( 2 )
+
+[node name="player_hit_area" type="Area2D" parent="."]
+position = Vector2( 3, 2 )
+rotation = 1.5802
+scale = Vector2( 1.25512, 1.25512 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hit_area"]
+modulate = Color( 1, 0, 0, 1 )
+shape = SubResource( 36 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_anim_finished"]
+[connection signal="body_entered" from="Player_finding" to="." method="_Player_entered"]
+[connection signal="body_exited" from="Player_finding" to="." method="_Player_exited"]
+[connection signal="area_entered" from="player_hit_area" to="." method="_player_entered"]
+[connection signal="area_exited" from="player_hit_area" to="." method="_flash_exited"]
